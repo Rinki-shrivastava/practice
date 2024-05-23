@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: example-app
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+      - name: example-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+# Explanation:
+
+# apiVersion: Specifies the API version of the Deployment resource.
+# kind: Specifies the kind of Kubernetes resource, which is Deployment in this case.
+# metadata: Contains metadata such as the name of the Deployment resource.
+# spec: Specifies the desired state of the Deployment resource.
+# replicas: Specifies the number of desired replicas (pods) for the application.
+# selector: Specifies the labels used to select the pods controlled by this Deployment.
+# matchLabels: Specifies the labels to match.
+# template: Specifies the pod template used to create new pods.
+# metadata: Contains metadata for the pod template.
+# labels: Specifies the labels for the pods created from this template.
+# spec: Specifies the specification of the pods created from this template.
+# containers: Specifies the containers within the pod.
+# name: Specifies the name of the container.
+# image: Specifies the Docker image to use for the container.
+# ports: Specifies the ports that the container exposes.
+# containerPort: Specifies the port number on which the container listens.
+# In this example, the Deployment named "example-deployment" creates and manages three 
+# replicas of a pod running an NGINX container. 
+# The NGINX container listens on port 80, and the deployment ensures that three identical 
+# pods are always running based on the provided pod template. Adjust the YAML file according to your specific 
+# application requirements.
