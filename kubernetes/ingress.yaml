@@ -17,32 +17,6 @@ spec:
             port:
               number: 80
 
-
-It seems you're referring to Kubernetes Ingress. An Ingress in Kubernetes is an API object that manages external access to services within a cluster. An Ingress controller fulfills the Ingress, usually by providing reverse proxy functionality, such as NGINX or HAProxy.
-
-Below is an example of a basic Ingress YAML file:
-
-yaml
-Copy code
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: example-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  rules:
-  - host: example.com
-    http:
-      paths:
-      - path: /app
-        pathType: Prefix
-        backend:
-          service:
-            name: app-service
-            port:
-              number: 80
-
 # Explanation:
 
 # apiVersion: Specifies the API version of the Ingress resource.
