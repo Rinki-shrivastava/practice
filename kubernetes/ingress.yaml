@@ -1,0 +1,64 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /app
+        pathType: Prefix
+        backend:
+          service:
+            name: app-service
+            port:
+              number: 80
+
+
+It seems you're referring to Kubernetes Ingress. An Ingress in Kubernetes is an API object that manages external access to services within a cluster. An Ingress controller fulfills the Ingress, usually by providing reverse proxy functionality, such as NGINX or HAProxy.
+
+Below is an example of a basic Ingress YAML file:
+
+yaml
+Copy code
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /app
+        pathType: Prefix
+        backend:
+          service:
+            name: app-service
+            port:
+              number: 80
+
+# Explanation:
+
+# apiVersion: Specifies the API version of the Ingress resource.
+# kind: Specifies the kind of Kubernetes resource, which is Ingress in this case.
+# metadata: Contains metadata such as the name and annotations of the Ingress resource.
+# annotations: Additional configuration or metadata for the Ingress controller.
+# spec: Specifies the desired state of the Ingress resource.
+# rules: Defines a set of routing rules.
+# host: The hostname that the Ingress will route traffic for.
+# http: Specifies HTTP-specific routing rules.
+# paths: Specifies different paths and how they should be routed.
+# path: The URL path prefix to match.
+# pathType: Specifies how the path should be matched (Prefix, Exact, ImplementationSpecific).
+# backend: Specifies the backend service to route traffic to.
+# service: Specifies the name of the Kubernetes service to route traffic to.
+# port: Specifies the port of the backend service.
+# In this example, any traffic coming to example.com/app will be routed to the app-service 
+# Kubernetes service on port 80. You can customize this YAML file based on your specific requirements and 
+# the capabilities of your Ingress controller.
