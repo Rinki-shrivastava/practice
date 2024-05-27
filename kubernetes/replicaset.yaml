@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+# Explanation:
+
+# apiVersion: Specifies the version of the Kubernetes API to use.
+# kind: Specifies the type of Kubernetes resource, in this case, a ReplicaSet.
+# metadata: Contains metadata about the ReplicaSet, such as its name.
+# spec: Defines the specification of the ReplicaSet.
+# replicas: Specifies the desired number of pod replicas to maintain. In this example, it's set to 3.
+# selector: Defines how the ReplicaSet identifies which pods it should manage.
+# matchLabels: Specifies the labels that the ReplicaSet will use to select pods. In this example, it selects pods with the label app: my-app.
+# template: Defines the pod template used by the ReplicaSet to create new pods.
+# metadata: Contains metadata for the pod template, including labels.
+# spec: Defines the specification for the pods created by the ReplicaSet.
+# containers: Specifies the containers within the pod.
+# name: Specifies the name of the container.
+# image: Specifies the Docker image to use for the container.
+# ports: Specifies the ports that the container exposes.
+
+# In this example, the ReplicaSet named my-replicaset ensures that there are always three replicas of the pod template running. 
+# Each replica runs an Nginx container listening on port 80. If a pod fails or is terminated, 
+# the ReplicaSet automatically creates a new pod to maintain the desired number of replicas.
